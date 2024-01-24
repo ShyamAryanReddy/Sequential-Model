@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retinopathy Analysis</title>
+    <style>
+        body{
+          background: white;
+        }
+
+        h1, h4 {
+            color: black;
+        }
+
+        .drop-container {
+          position: relative;
+          display: flex;
+          gap: 10px;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          height: 200px;
+          padding: 20px;
+          border-radius: 10px;
+          border: 2px dashed #555;
+          color: #444;
+          cursor: pointer;
+          transition: background .2s ease-in-out, border .2s ease-in-out;
+        }
+
+        .drop-container:hover,
+        .drop-container.drag-active {
+          background: #eee;
+          border-color: #111;
+        }
+
+        .drop-container:hover .drop-title,
+        .drop-container.drag-active .drop-title {
+          color: #222;
+        }
+
+        input[type=file] {
+          width: 350px;
+          max-width: 100%;
+          color: #444;
+          padding: 5px;
+          background: #fff;
+          border-radius: 10px;
+          border: 1px solid #555;
+        }
+
+        input[type=file]::file-selector-button {
+          margin-right: 20px;
+          border: none;
+          background: #084cdf;
+          padding: 10px 20px;
+          border-radius: 10px;
+          color: #fff;
+          cursor: pointer;
+          transition: background .2s ease-in-out;
+        }
+
+        input[type=file]::file-selector-button:hover {
+          background: #0d45a5;
+        }
+
+        .drop-title {
+          color: #444;
+          font-size: 20px;
+          font-weight: bold;
+          text-align: center;
+          transition: color .2s ease-in-out;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1 align="center">Retinopathy Analysis</h1>
+    <h4 align="center">Upload the image to perform the diagnosis :</h4>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image" class="drop-container" id="dropcontainer">
+          <span class="drop-title">Drop files here</span>
+          or
+          <input type="file" id="image" name="file" accept=".png" required>
+        </label>
+        <!--input type="file" name="file" accept=".png" required -->
+        <br/>
+        <p align="center"><input type="submit" value="Upload"></p>
+    </form>
+</body>
+<script>
+    const dropContainer = document.getElementById("dropcontainer")
+    const fileInput = document.getElementById("image")
+
+    dropContainer.addEventListener("dragover", (e) => {
+    // prevent default to allow drop
+    e.preventDefault()
+    }, false)
+
+    dropContainer.addEventListener("dragenter", () => {
+    dropContainer.classList.add("drag-active")
+    })
+
+    dropContainer.addEventListener("dragleave", () => {
+    dropContainer.classList.remove("drag-active")
+    })
+
+    dropContainer.addEventListener("drop", (e) => {
+    e.preventDefault()
+    dropContainer.classList.remove("drag-active")
+    fileInput.files = e.dataTransfer.files
+    })
+</script>
+</html>

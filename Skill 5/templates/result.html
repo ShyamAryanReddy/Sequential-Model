@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <style>
+        h1, h3, p{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagnosis Results : </h1><br/><br/>
+    <div style="text-align: center;">
+        <img src="{{ url_for('static', filename=img) }}" alt="HappyFace">
+    </div>
+    {% if diagnosis == 0 %}
+        <h3>Mild Non-proliferative Retinopathy</h3>
+        <p>The first stage is also called background retinopathy.
+            It means that there are tiny bulges in the tiny blood vessels in your retinas.
+            The bulges are called microaneurysms.
+            They may cause the vessels to leak small amounts of blood into your retinas.</p>
+        <p>At this early stage, you probably don’t have vision problems, so you may not need treatment.
+            Talk to your doctor about ways to keep your condition from getting worse.
+            You'll need to keep your blood sugar, blood pressure, and cholesterol levels under control.
+            You should plan to have another screening test in 12 months.</p>
+        <p>If the doctor diagnoses you with this condition in both eyes, you have a 25% chance of progressing to the third stage in the next 3 years.</p>
+    {% elif diagnosis == 1 %}
+        <h3>Moderate Diabetic Retinopathy</h3>
+        <p>The second stage is also called pre-proliferative retinopathy.
+            At this stage, the blood vessels in your retinas swell.
+            They may not carry blood as well as they used to.
+            These things can cause physical changes to the retina.</p>
+        <p>These changes can lead to diabetic macular edema (DME).
+            This happens when blood and other fluids build up in a part of your retina called the macula.
+            The macula is key for straight-ahead vision, like when you read or drive.
+            When it swells, it can cause problems with this important part of your vision.</p>
+        <p>Half the people with diabetic retinopathy will get DME.
+            It can happen at any stage, but it’s more likely to happen as the condition advances.</p>
+        <p>Reaching this stage means a greater chance that the disease will affect your vision.
+            Your doctor may recommend eye tests every 3 to 6 months.</p>
+    {% elif diagnosis == 2 %}
+        <h3>Non-Proliferate Diabetic Retinopathy</h3>
+        <p>When you have nonproliferative diabetic retinopathy (NPDR), the walls of the blood vessels in your retina weaken.
+            Tiny bulges protrude from the walls of the smaller vessels, sometimes leaking fluid and blood into the retina.
+            Larger retinal vessels can begin to dilate and become irregular in diameter as well.</p>
+        <p>NPDR can progress from mild to severe as more blood vessels become blocked.</p>
+        <p>Sometimes retinal blood vessel damage leads to a buildup of fluid (edema) in the center portion (macula) of the retina.
+            If macular edema decreases vision, treatment is required to prevent permanent vision loss.</p>
+    {% elif diagnosis == 3 %}
+        <h3>Proliferate Diabetic Retinopathy</h3>
+        <p>In this advanced stage, new blood vessels grow in your retinas and into the gel-like fluid that fills your eyes.
+            This growth is called neovascularization.
+            These vessels are thin and weak.
+            They often bleed. The bleeding can cause scar tissue.</p>
+        <p>As the scar tissue gets smaller, it can pull the retina away from the back of your eye.
+            This is called retinal detachment.
+            It can lead to permanent loss of both straight-ahead and side vision.</p>
+    {% else %}
+        <h3>Severe Diabetic Retinopathy</h3>
+        <p>This is also called proliferative retinopathy.
+            In this stage, your blood vessels become even more blocked.
+            This means even less blood goes to the retinas.
+            Because of this, scar tissue forms.
+            The lack of blood triggers a signal to your retinas to create new blood vessels.</p>
+        <p>If the blood vessels close off completely, it's called macular ischemia.
+            This can lead to blurry vision with dark spots some people describe as “floaters.”</p>
+        <p>If you reach this stage, there’s a very high chance that you’ll lose your vision.
+            Treatment may be able to stop further vision loss.
+            But if you’ve already lost some of your vision, it’s unlikely to come back.</p>
+        {% endif %}
+    </h3>
+</body>
+</html>
